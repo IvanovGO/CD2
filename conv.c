@@ -7,18 +7,22 @@
 
 bool is_there(int n){
 
-while (){
+struct hysto * tp=NULL;
 
-
+while (tp->next!=NULL){
+if (tp->num==n) return true;
+tp=tp->next;
 }
 return false;
 }
 
 struct hysto * alter_hysto(int * p){
 
+struct hysto * tp=NULL;
+
 for (long i=0;i<MemAllocated;i++){
 
-if (!is_there(p[i]))
+if (!is_there(p[i])) {}
 
 }
 
