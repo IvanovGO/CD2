@@ -1,3 +1,6 @@
+#include "prepare.h"
+#include "conv.h"
+
 #include <stdio.h>
 #include <time.h>
 
@@ -17,7 +20,14 @@ switch (argc){
 	printf("Too many arguments\n");
 }
 
+
 if (argc==2){
+int * pin = Load_File (argv[1]);
+Print_Pre(pin);
+}
+
+/*
+
 
  srand(time(NULL));
  
@@ -44,49 +54,7 @@ if (argc==2){
  
  if (argc==3){
  
- FILE * indata;
- FILE * outdata;
  
- indata = fopen(argv[1],"r");
- outdata = fopen(argv[2],"w");
- 
- if (indata==NULL) {
- printf ("Can`t open file%s\n",argv[1]);
- return -3;}
-
- if (outdata==NULL) {
- printf ("Can`t create file%s\n",argv[2]);
- return -4;}
- 
- char rd[3];
- int rid;
- unsigned int wd; 
- int byisiz=sizeof(wd)*8;
- int i=0;
- while (fgets(rd,3,indata)!=NULL){
-  rid=atoi(rd);
-  
-  switch (rid){
-  case 0:
-  	wd&=~(1<<i);
-  	i++;
-	  break;
-  case 1:
-        wd|=1<<i;
-        i++;
-        
-	  break;
-	
-	  default:
-        fprintf(outdata,"%i\n",wd);
-        wd=rid;
-        fprintf(outdata,"%i\n",wd);
-        i=0;
-  }
-  if (i>byisiz) { fprintf(outdata,"%i\n",wd); i=0;}
- }
-   fclose(indata);
-   fclose(outdata);
  
  }//conv
 
@@ -104,7 +72,6 @@ if (argc==2){
 	 
 	 char rd[3];
          unsigned int rid;
-         unsigned int wd; 
          int byisiz=sizeof(rid)*8;
          int i=0;
          
@@ -122,5 +89,5 @@ if (argc==2){
 	
 	}}//deconv
 
-
+*/
 }
