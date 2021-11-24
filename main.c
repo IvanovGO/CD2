@@ -24,6 +24,9 @@ switch (argc){
 if (argc==2){
 int * pin = Load_File (argv[1]);
 Print_Pre(pin);
+print_hysto(alter_hysto(pin));
+//alter_hysto(pin);
+
 }
 
 /*
@@ -50,7 +53,7 @@ Print_Pre(pin);
  // if (flen%0x1fffffff) printf("%i bytes left\n",flen) ;
   }
   fclose(rdata);
- }//create
+ }//create 
  
  if (argc==3){
  

@@ -8,7 +8,7 @@ int fsize(char file[40])
     FILE * f = fopen(file, "r");
     fseek(f, 0, SEEK_END);
     unsigned long len = (unsigned long)ftell(f);
-    fclose(f);
+    fclose(f); 
     return len;
 }
 

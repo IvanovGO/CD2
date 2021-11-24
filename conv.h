@@ -1,7 +1,11 @@
 #include <stdbool.h>
 
-struct hysto {int num; long count; char * next; };
+typedef struct hysto {int num; long count; struct hysto * next; } hysto;
 
-struct hysto * alter_hysto(int * p);
+
+
+hysto * alter_hysto(int * p); 
+
+void print_hysto(hysto * p);
 
 int * conv(int * p);
