@@ -64,7 +64,7 @@ dlist * alter_hysto(int * p){//функция создания гистогра�
 
 dlist * hysto = dlist_init();
 
-for (unsigned long i=1;i<MemAllocated;i++) //printf("%i ",p[i]); //puts("alter for");//проходим по исходным данным
+for (unsigned long i=0;i<MemAllocated;i++) //printf("%i ",p[i]); //puts("alter for");//проходим по исходным данным
    if (!dlist_find(hysto,p[i])) {dlist_add(hysto,dnode_add(p[i]));} else {//если нет добавляем новый узел
            dnode_inc(dlist_find(hysto,p[i])); }//уже было плюсуем соответсвующий
     

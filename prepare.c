@@ -35,10 +35,10 @@ int * Load_File (char fname[80]){
 
  outdata = (int*)malloc(sizeof(int)*fsize(fname));
  
- char rd[3];
+ char rd[8];
  int rid;
  long int i=0;
- while (fgets(rd,3,indata)!=NULL){
+ while (fgets(rd,8,indata)!=NULL){
   rid=atoi(rd);
   outdata[i]=rid;
   i++;

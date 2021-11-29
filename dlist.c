@@ -181,7 +181,8 @@ p=p->next;}
 return NULL;
 }
 
-unsigned long dlist_sum(dlist * list){
+unsigned long dlist_sum(dlist * list)
+{
 if(!list->tail) return 0;
 unsigned long rez=0;
 dnode * p = list->tail;
