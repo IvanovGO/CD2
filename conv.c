@@ -7,7 +7,7 @@
 Гистограмма представляет собой множдество значений число-частота где под частотой понимается количество вхождений числа в множество
 */
 
-
+/*
 hysto * hysto_head=NULL;//корень гистограммы
 
 
@@ -50,25 +50,36 @@ p=p->next;}
 return NULL;
 }
 
-hysto * alter_hysto(int * p){//функция создания гистограммы
-                            //ссылка на область памяти с исходными данными  
-//puts(" hysto head");
-hysto_head=create_hysto(p[0]);
-//puts("alter hysto");
+*/
+
+/*
 for (long i=1;i<MemAllocated;i++){ //printf("%i ",p[i]); //puts("alter for");//проходим по исходным данным
    if (!inc_hysto(is_there(hysto_head,p[i]))) {//если уже было плюсуем соответсвующий
    	hysto_head = hysto_add(hysto_head,p[i]);//если нет добавляем новый узел
    	if (!hysto_head) return NULL;	
-   			}}	//если не получилось выход в пустоту
-return hysto_head;//вызвращаем ссылку на корень
+   			}}	
+*/
+dlist * alter_hysto(int * p){//функция создания гистограммы
+                            //ссылка на область памяти с исходными данными  
+
+dlist * hysto = dlist_init();
+
+for (unsigned long i=1;i<MemAllocated;i++) //printf("%i ",p[i]); //puts("alter for");//проходим по исходным данным
+   if (!dlist_find(hysto,p[i])) {dlist_add(hysto,dnode_add(p[i]));} else {//если нет добавляем новый узел
+           dnode_inc(dlist_find(hysto,p[i])); }//уже было плюсуем соответсвующий
+    
+hysto=dlist_sort(hysto);
+
+printf("Sum of count=%li\n",dlist_sum(hysto));
+
+return  hysto;
 }
 
 
-void print_hysto(hysto * p){
+void print_hysto(dlist * p){
 //puts("print_hysto");
-while(p) {
-	printf("Output - %i %li\n",p->num,p->count);
-	 p=p->next; }
+
+dlist_list(p);
 
 }
 

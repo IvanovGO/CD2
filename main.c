@@ -25,7 +25,7 @@ if (argc==2){
 int * pin = Load_File (argv[1]);
 //Print_Pre(pin);puts("");
 
-hysto * f_in = alter_hysto(pin);
+dlist * f_in = alter_hysto(pin);
 print_hysto(f_in);
 
 
