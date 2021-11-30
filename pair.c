@@ -1,4 +1,4 @@
-#include "pr_list.h"
+#include "pair.h"
 #include <stdlib.h>
 #include <stdio.h>
 //#include <stdbool.h>
@@ -87,31 +87,12 @@ return c;}
 
 int pr_node_print(pr_node * node){
 
-//printf("prev-%p next-%i num-%p \n",(void*)node,		
-//				node->num,(void*)node->list);
 
-printf("num-%i count-%li \n", node->num,node->count);
+printf("n1-%i n2-%i start-%li end-%li\n", node->n1,node->n2,node->start,node->end);
 
 return 0;
 }
 
-
-
-/*
-pr_node * pr_list_remove(pr_node * node){//удаление узла
-puts("pr_list remove");
-printf("count %li ",node->list->count);
-printf("count-- %li \n",node->list->count);
-if (node->list->head!=node) {node->prev->next=node->next->prev;
-			     return node;} else node->list->head=node->prev;
-node->list->count--;
-if (node->list->tail==node) {node->list->tail=NULL;
-if (node->list->count) {
-      	printf("Warning! Count mismatch with pr_list is empty. %li nodes is orphaned!",node->list->count);
-  			}return node;}
-node->list=NULL;
-return node;
-}*/
 
 
 pr_node * pr_list_remove(pr_node * node){
@@ -154,50 +135,24 @@ node->prev=NULL;
 return node;
 }
 
-pr_node * pr_list_min(pr_list * list){
-pr_node * p = list->tail;
-pr_node * mp = p;
-int min=p->num;
-while (p){if (p->num<min) {min=p->num; mp=p;}
-p=p->next;}
-//printf("mp-num=%i\n",mp->num);
-return mp;}
 
-pr_node * pr_list_max(pr_list * list){
+pr_node * pr_list_find(pr_list * list,int n1,int n2){
 if(!list->tail) return NULL;
 pr_node * p = list->tail;
-pr_node * mp = p;
-int max=p->num;
-while (p){if (p->num>max) {max=p->num; mp=p;}
-p=p->next;}
-return mp;}
-
-
-pr_node * pr_list_find(pr_list * list,int num){
-if(!list->tail) return NULL;
-pr_node * p = list->tail;
-while (p){if (p->num==num) return p;
+while (p){if ((p->n1==n1)&&(p->n1==n1)) return p;
 p=p->next;}
 return NULL;
 }
 
-unsigned long pr_list_sum(pr_list * list)
-{
-if(!list->tail) return 0;
-unsigned long rez=0;
-pr_node * p = list->tail;
-while (p) {rez+=p->count;
-p=p->next;}
-return rez;
-}
 
-
-pr_node * pr_node_add(int num){
+pr_node * pr_node_add(int n1,int n2,unsigned long start,unsigned long end){
 pr_node * p = (pr_node*)malloc(sizeof(pr_node));
 if (!p) return NULL;
 /*----*/
-p->num=num;
-p->count=1;
+p->n1=n1;
+p->n2=n2;
+p->start=start;
+p->end=end;
 /**-----*/
 p->prev=NULL;
 p->next=NULL;
@@ -205,33 +160,12 @@ p->list=NULL;
 return p;}
 
 
-pr_node * pr_node_inc(pr_node * node){
-if (!node) return node;
-node->count++;
-return node;
-}
 
 
-pr_list * pr_list_sort(pr_list * list){
-//puts ("SORT");
-if (pr_list_is_empty(list)) return NULL;
-//puts("not empty");
-if (pr_list_is_trivial(list)) return list;
-//puts("not trivaial");
+pr_list * pair(dlist * hysto, int * d_in ){ 
+
 pr_list * p = pr_list_init();
 
-p=list;
-//puts("list p");
-//printf ("tail p - %p pr_list_list %li\n",(void*)p->tail,pr_list_list(p));
-
-pr_list * ps = pr_list_init();
-while(p->count) {//puts("while");
-pr_list_add(ps,pr_list_remove(pr_list_max(p)));
-//pr_list_list(p);
-}
-
-return ps;
-}
-
+return p;}
 
 

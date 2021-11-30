@@ -1,5 +1,5 @@
 #include "prepare.h"
-#include "conv.h"
+#include "pair.h"
 
 #include <stdio.h>
 #include <time.h>
@@ -28,7 +28,9 @@ int * pin = Load_File (argv[1]);
 dlist * f_in = alter_hysto(pin);
 print_hysto(f_in);
 
+pr_list * pl = pair(f_in,pin);
 
+pr_list_list(pl);
 
 }
 
