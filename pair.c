@@ -162,11 +162,17 @@ return p;}
 
 
 
-unsigned int find_pr(dlist * hysto, int * d_in){
+bool pr_in_list(){return 0;}
+
+
+pr_list * find_pr(dlist * hysto, int * d_in){
 
 printf("find_pr \n MemAllocated-%li\n",MemAllocated);
 
 // for (unsigned long a=1;a!=MemAllocated;a++) printf("d_in[%li]=%4i    ",a,d_in[a]);
+
+pr_list * p = pr_list_init();
+
 
 unsigned long len;
 
@@ -182,8 +188,17 @@ len=0; //обнуляем длинну участка
    for (unsigned long a=1;a!=MemAllocated;a++) {//пробегаем по исходным данным
   
  //  printf("j=%li, i->num-%li \r",j,i->num); //выводим пару
- if (len>35) printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,i->num,a,d_in[a]); 
+   
+    if (len>sizeof(pr_list)*2) {printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,i->num,a,d_in[a]); 
+
+    pr_node * pn=pr_node_add(j,i->num,a-len,a);    
+    pr_list_add(p,pn);
+    
+    }
+   
         len = 0;
+        
+        
 //        printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,i->num,a,d_in[a]);  
         while (  ( (d_in[a]==j)||(d_in[a]==i->num) )&&( a< MemAllocated-1 )  )//пробегаем по участку
         
@@ -202,14 +217,14 @@ len=0; //обнуляем длинну участка
                           } /*else puts("skip");*/}
 //                    printf("%i ",i->num);                                
 						   }
-return 0;}
+return p;}
 
 
 pr_list * pair(dlist * hysto, int * d_in ){ 
 puts ("pair");
 pr_list * p = pr_list_init();
 
-find_pr(hysto,d_in);
+p = find_pr(hysto,d_in);
 /*
 for (dnode * i = hysto->tail;i!=NULL;i=i->next){
 dnode_print(i);

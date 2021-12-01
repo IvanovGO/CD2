@@ -32,7 +32,8 @@ pr_list * pl = pair(f_in,pin);
 
 print_hysto(f_in);
 
-//pr_list_list(pl);
+
+pr_list_list(pl);
 
 
 
