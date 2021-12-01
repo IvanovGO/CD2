@@ -1,4 +1,5 @@
 #include "pair.h"
+#include "prepare.h"
 #include <stdlib.h>
 #include <stdio.h>
 //#include <stdbool.h>
@@ -161,11 +162,60 @@ return p;}
 
 
 
+unsigned int find_pr(dlist * hysto, int * d_in){
+
+printf("find_pr \n MemAllocated-%li\n",MemAllocated);
+
+// for (unsigned long a=1;a!=MemAllocated;a++) printf("d_in[%li]=%4i    ",a,d_in[a]);
+
+unsigned long len;
+
+for (dnode * i = hysto->head->prev;i != NULL;i = i->prev ){ //пробегаем по гистограмме количеств чисел 
+                     //i - узел для каждого числа       в порядке убывания со второго элемена сверху  (1)
+puts("!NULL");
+len=0; //обнуляем длинну участка
+ 
+    for (unsigned long j = 0;j!=i->num;j++){ //пробегаем по всем числам менее текущего начиная со второго
+//              printf("j=%i ",j);
+ if (dlist_find(hysto,j)) {  //если число есть в списке количеств
+  
+   for (unsigned long a=1;a!=MemAllocated;a++) {//пробегаем по исходным данным
+  
+ //  printf("j=%li, i->num-%li \r",j,i->num); //выводим пару
+ if (len>35) printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,i->num,a,d_in[a]); 
+        len = 0;
+//        printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,i->num,a,d_in[a]);  
+        while (  ( (d_in[a]==j)||(d_in[a]==i->num) )&&( a< MemAllocated-1 )  )//пробегаем по участку
+        
+      { a++; len++;  }
+      //прирост счетчика длинны участка  и печатем результат 
+    
+     
+/*    if ((d_in[a]==i->num||(d_in[a]==i->next->num))&&(a!=MemAllocated)) {
+                len++;                     
+    			     }
+
+   printf(" i->num %i i->next->num = %i %li \n",i->num,i->next->num,len);
+*/     
+// printf("\ni->num=%li j=%li len=%li ",(long int)i->num,j,len);
+                                                }
+                          } /*else puts("skip");*/}
+//                    printf("%i ",i->num);                                
+						   }
+return 0;}
+
 
 pr_list * pair(dlist * hysto, int * d_in ){ 
-
+puts ("pair");
 pr_list * p = pr_list_init();
 
+find_pr(hysto,d_in);
+/*
+for (dnode * i = hysto->tail;i!=NULL;i=i->next){
+dnode_print(i);
+
+}
+*/
 return p;}
 
 
