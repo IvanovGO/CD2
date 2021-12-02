@@ -28,11 +28,15 @@ int * pin = Load_File (argv[1]);
 dlist * f_in = alter_hysto(pin);
 
 
-pr_list * pl = pair(f_in,pin);
+pr_list * pl = find_pr(f_in,pin);
 
+puts("convolutions");
+convolutions(pl,pin);
+
+puts("print_hysto(f_in);");
 print_hysto(f_in);
 
-
+puts("pr_list_list(pl);");
 pr_list_list(pl);
 
 

@@ -10,6 +10,8 @@ struct pr_list * list;
 //-----------------
 int n1,n2;//найденная пара
 unsigned long start,end; // смещение начала и конца последовательности из найденной пары
+char * conv; //ссылка на готовую свертку
+unsigned int conv_len;
 //------------------
 struct pr_node * next; } pr_node;   
 	        
@@ -20,7 +22,9 @@ struct pr_node * tail;
 long count;          } pr_list;
 	             
 	  
-pr_list * pair(dlist * hysto, int * d_in );	  
+pr_list * convolutions(pr_list * pl,int * d_in); //свертка 
+
+pr_list * find_pr(dlist * hysto, int * d_in);
 	             
 pr_list * pr_list_init();
 

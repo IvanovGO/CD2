@@ -189,7 +189,7 @@ len=0; //обнуляем длинну участка
   
  //  printf("j=%li, i->num-%li \r",j,i->num); //выводим пару
    
-    if (len>sizeof(pr_list)*2) {printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,i->num,a,d_in[a]); 
+    if (len>sizeof(pr_list)*2) {printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,(long int)i->num,a,d_in[a]); 
 
     pr_node * pn=pr_node_add(j,i->num,a-len,a);    
     pr_list_add(p,pn);
@@ -220,17 +220,31 @@ len=0; //обнуляем длинну участка
 return p;}
 
 
-pr_list * pair(dlist * hysto, int * d_in ){ 
-puts ("pair");
-pr_list * p = pr_list_init();
 
-p = find_pr(hysto,d_in);
-/*
-for (dnode * i = hysto->tail;i!=NULL;i=i->next){
-dnode_print(i);
+
+pr_list * convolutions(pr_list * pl,int * d_in){ //функция битовой свертки 
+puts ("conv");
+
+
+
+for (pr_node * i = pl->tail;i!=pl->head;i=i->next) {//пробегаем по спискам найденных двоичных 
+//								последователностей
+pr_node_print(i);//отладочный вывод
+
+i->conv_len=(i->start-i->end)/sizeof(char);//вычисляем длинну памяти под свертку
+char * b = (char*) malloc(i->conv_len+1);//выделяем память
+i->conv=b;
+for(unsigned long m=i->start;m<i->end;m++){ //пробегаемся по участку исходных данных 
+	for (char b=1;b!=sizeof(char);b++) {
+				m++;
+					   }
+
 
 }
-*/
-return p;}
+
+
+}
+
+return pl;}
 
 
