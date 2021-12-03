@@ -1,5 +1,6 @@
 #include "prepare.h"
 #include "pair.h"
+#include "save.h"
 
 #include <stdio.h>
 #include <time.h>
@@ -30,11 +31,15 @@ dlist * f_in = alter_hysto(pin);
 
 pr_list * pl = find_pr(f_in,pin);
 
+puts("print_hysto(f_in);");
+print_hysto(f_in);
+
 puts("convolutions");
 convolutions(pl,pin);
 
-puts("print_hysto(f_in);");
-print_hysto(f_in);
+pr_compose(pl,pin, MemAllocated);
+
+print_conv(pl);
 
 puts("pr_list_list(pl);");
 pr_list_list(pl);

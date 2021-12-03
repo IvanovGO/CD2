@@ -225,26 +225,41 @@ return p;}
 pr_list * convolutions(pr_list * pl,int * d_in){ //функция битовой свертки 
 puts ("conv");
 
-
-
 for (pr_node * i = pl->tail;i!=pl->head;i=i->next) {//пробегаем по спискам найденных двоичных 
 //								последователностей
 pr_node_print(i);//отладочный вывод
 
-i->conv_len=(i->start-i->end)/sizeof(char);//вычисляем длинну памяти под свертку
-char * b = (char*) malloc(i->conv_len+1);//выделяем память
+i->conv_len=(i->end-i->start)/sizeof(char)/8;//вычисляем длинну памяти под свертку
+unsigned char * b = (unsigned char*) malloc(i->conv_len+1);//выделяем память
 i->conv=b;
-for(unsigned long m=i->start;m<i->end;m++){ //пробегаемся по участку исходных данных 
-	for (char b=1;b!=sizeof(char);b++) {
-				m++;
-					   }
+unsigned long baddr=0;
+unsigned char bit=0;//восьмибитить будем
+printf("Memory allocated %li ",(long)i->conv_len);//отладочная ифнформация
+for(unsigned long m=i->start;m<i->end-1;m++){ //пробегаемся по участку исходных данных 
+	bit++;//следующий бит свёртки
+	if (bit>sizeof(char)*8) {bit=1; baddr++;b[baddr]=0;}//если больше восьмого преходим на следущий байт
+	if (d_in[m]==i->n1) { b[baddr]|=1<<bit;//n1 - устанваливаем единицу
+	}else if (d_in[m]==i->n2) {//n2 - ничего не устанваливаем, были нули
+	                        } else //иначе выходим из функции т.к. чтото пошло не так, 
+	     {printf("Convoluted data %i not in n1=%i n2=%i number \n",d_in[m],i->n1,i->n2);
+        	     return NULL;}//выводим сообщение что и почему
+        	     
 
-
-}
-
-
+}  i->conv_len=baddr;//переопределяем на фактическую длинну свертки
 }
 
 return pl;}
 
+
+void print_conv(pr_list * pl){//печатает свёртки
+puts("print conv");
+char k=6;
+for (pr_node * i = pl->tail;i!=pl->head;i=i->next) 
+
+ for (unsigned long m=0;m<i->conv_len;m++) {printf("m[%6li]=%3i ",m,i->conv[m]);
+ k--;
+ if (!k) {printf(";\n");k=6;}
+ }
+puts("printed");
+}
 

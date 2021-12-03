@@ -10,8 +10,12 @@ struct pr_list * list;
 //-----------------
 int n1,n2;//найденная пара
 unsigned long start,end; // смещение начала и конца последовательности из найденной пары
-char * conv; //ссылка на готовую свертку
+
 unsigned int conv_len;
+unsigned char * conv; //ссылка на готовую свертку
+
+
+
 //------------------
 struct pr_node * next; } pr_node;   
 	        
@@ -23,6 +27,8 @@ long count;          } pr_list;
 	             
 	  
 pr_list * convolutions(pr_list * pl,int * d_in); //свертка 
+
+void print_conv(pr_list * pl);// вывод свертки на stdout
 
 pr_list * find_pr(dlist * hysto, int * d_in);
 	             
