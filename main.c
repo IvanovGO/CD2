@@ -37,19 +37,19 @@ print_hysto(f_in);
 puts("convolutions");
 convolutions(pl,pin);
 
-pr_compose(pl,pin, MemAllocated);
 
-print_conv(pl);
+
+
+
+printf("pr_list_list(pl) returns - %s MemAllocated=%li\n",
+        pr_compose(pl,pin,MemAllocated,"rez.d") ? "win":"fail",MemAllocated);
 
 
 pr_list_list(pl);
 
-printf("pr_list_list(pl) returns - %p Mem Allocated=%li\n",pr_compose(pl,pin,MemAllocated),MemAllocated);
+print_conv(pl);
 
-
-printf("saving %s \n",pr_save(pl,"rez.d") ? "win":"fail0");
-
-
+printf("Count of conv=%li\n",pl->count);
 }
 
 return 0;

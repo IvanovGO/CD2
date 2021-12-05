@@ -191,9 +191,9 @@ len=0; //обнуляем длинну участка
    for (unsigned long a=1;a!=MemAllocated;a++) {//пробегаем по исходным данным
   
  //  printf("j=%li, i->num-%li \r",j,i->num); //выводим пару
-   
-    if (len>sizeof(pr_list)*2) {printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,(long int)i->num,a,d_in[a]); 
-
+                  //здесь регулируем порог срабатывания sizeof(pr_list)
+    if (len>8) {printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,(long int)i->num,a,d_in[a]); 
+    p->count++;//считаем будущие свертки
     pr_node * pn=pr_node_add(j,i->num,a-len,a);    
     pr_list_add(p,pn);
     
@@ -268,9 +268,14 @@ puts("printed");
 
 pr_node *  find_pr_node(pr_list * list, unsigned long m){//возвращает ссылку на свертку в которую "попали" исходные данные пo адресу m 
 
-for (pr_node * i = list->tail;i!=list->head;i=i->next) 
+for (pr_node * i = list->tail;i!=list->head;i=i->next) {
+               
+               printf("find_pr_node %p\n",(void*)i);
+
                  //ОБРАТИТЬ ВНИМАНИЕ ПРИ ОТЛАДКЕ!!! m>=i->start m<i-end
-if ((m>=i->start) && (m<i->end)) return i;
+if ((m>=i->start) && (m<i->end)) { printf("node found fore range %li-%li\n",i->start,i->end);
+                                return i;}
+                                }
 
 
 puts ("find_pr_node - found nothing");
