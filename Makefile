@@ -5,5 +5,5 @@ win:
 	winegcc main.c prepare.c conv.c dlist.c pair.c -o cd2 -Wall -Wpedantic 
 
 clean:
-	rm cd2 cd2.*
+	rm cd2 cd2.* rez* rez*.* *.zip
 

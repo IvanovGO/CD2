@@ -41,12 +41,16 @@ pr_compose(pl,pin, MemAllocated);
 
 print_conv(pl);
 
-puts("pr_list_list(pl);");
+
 pr_list_list(pl);
 
+printf("pr_list_list(pl) returns - %p Mem Allocated=%li\n",pr_compose(pl,pin,MemAllocated),MemAllocated);
+
+
+printf("saving %s \n",pr_save(pl,"rez.d") ? "win":"fail0");
 
 
 }
 
-
+return 0;
 }

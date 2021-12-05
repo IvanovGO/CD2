@@ -18,14 +18,18 @@ unsigned char * conv; //ссылка на готовую свертку
 
 //------------------
 struct pr_node * next; } pr_node;   
-	        
 
 typedef struct pr_list {
 struct pr_node * head;
 struct pr_node * tail;
-long count;          } pr_list;
-	             
-	  
+unsigned long count; 
+unsigned long conv_len;
+unsigned char * conv;
+         } pr_list;
+	            
+	            
+pr_node *  find_pr_node(pr_list * list, unsigned long m);//возвращает ссылку на свертку в которую "попали" исходные данные пo адресу m 
+	            
 pr_list * convolutions(pr_list * pl,int * d_in); //свертка 
 
 void print_conv(pr_list * pl);// вывод свертки на stdout

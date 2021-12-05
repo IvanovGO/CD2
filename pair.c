@@ -27,6 +27,9 @@ if (!p) return NULL;
 p->count=0;
 p->head=NULL;
 p->tail=NULL;
+p->count=0;
+p->conv_len=0;
+p->conv=NULL;
 return p;
 }
 
@@ -263,3 +266,13 @@ for (pr_node * i = pl->tail;i!=pl->head;i=i->next)
 puts("printed");
 }
 
+pr_node *  find_pr_node(pr_list * list, unsigned long m){//возвращает ссылку на свертку в которую "попали" исходные данные пo адресу m 
+
+for (pr_node * i = list->tail;i!=list->head;i=i->next) 
+                 //ОБРАТИТЬ ВНИМАНИЕ ПРИ ОТЛАДКЕ!!! m>=i->start m<i-end
+if ((m>=i->start) && (m<i->end)) return i;
+
+
+puts ("find_pr_node - found nothing");
+return NULL;
+}
