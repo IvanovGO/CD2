@@ -27,7 +27,7 @@ if (!p) return NULL;
 p->count=0;
 p->head=NULL;
 p->tail=NULL;
-p->count=0;
+p->c_count=0;
 p->conv_len=0;
 p->conv=NULL;
 return p;
@@ -193,7 +193,7 @@ len=0; //обнуляем длинну участка
  //  printf("j=%li, i->num-%li \r",j,i->num); //выводим пару
                   //здесь регулируем порог срабатывания sizeof(pr_list)
     if (len>8) {printf("len=%li j=%li i->num=%li d_in[%li]=%i\n",len,j,(long int)i->num,a,d_in[a]); 
-    p->count++;//считаем будущие свертки
+    p->c_count++;//считаем будущие свертки
     pr_node * pn=pr_node_add(j,i->num,a-len,a);    
     pr_list_add(p,pn);
     

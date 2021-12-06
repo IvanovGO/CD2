@@ -55,7 +55,7 @@ for (unsigned long m=2;m<MemAllocated;m++)
                       if (m<MemAllocated) { 
 
                       *ch=tn->conv[cm];
-                      fprintf(f,"%c",*ch);
+                      fprintf(f,"%0c",*ch);
                    //   fprintf(f,"%i ",*ch);
                   /*    count = fwrite(ch,sizeof(unsigned char),1, f);//записываем данные в файл
 

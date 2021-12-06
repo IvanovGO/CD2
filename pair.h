@@ -23,6 +23,7 @@ typedef struct pr_list {
 struct pr_node * head;
 struct pr_node * tail;
 unsigned long count; 
+unsigned long c_count; 
 unsigned long conv_len;
 unsigned char * conv;
          } pr_list;

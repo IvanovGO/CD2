@@ -49,7 +49,7 @@ pr_list_list(pl);
 
 print_conv(pl);
 
-printf("Count of conv=%li\n",pl->count);
+printf("Count of conv=%li %li\n",pl->c_count,pl->count);
 }
 
 return 0;
